@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from .settings import MEDIA_ROOT, MEDIA_URL
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('kyc/', include('kyc.urls', namespace='kyc')),
-    # path('signature/', include('signature.urls', namespace='sign')),
+    path('signature/', include('signature.urls', namespace='sign')),
     path('tictactoe/', include('tictactoe.urls', namespace='ttt')),
     # path('leaderboard/', include('leaderboard.urls', namespace='leader'))
 
-]
+] + static(MEDIA_URL, document_root=MEDIA_ROOT)
